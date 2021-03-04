@@ -9,7 +9,7 @@ Cub3D represents a realistic 3D graphic of the inside of a maze from a first per
 #save screen shot(screenshot.bmp) from a spawn point
 ./cub3D xxx.cub --save
 ```
-#CubFile
+# CubFile
 You can determine structure of a maze and textures by editing cub file.  
 The map must be composed of only 4 possible characters
 - 0 : an empty space
