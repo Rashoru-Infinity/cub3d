@@ -1,0 +1,12 @@
+*.o
+*.a
+.*.swp
+test
+*.out
+*.txt
+core
+log
+display.conf
+test
+cub3D
+*.bmp

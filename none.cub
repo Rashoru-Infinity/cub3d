@@ -1,0 +1,8 @@
+S ./textures/kansho_bakuya.xpm
+R 900 600
+NO ./textures/c_north.xpm
+SO ./textures/c_south.xpm
+WE ./textures/c_west.xpm
+EA ./textures/c_east.xpm
+C 230,90,70
+F 100,60,50
