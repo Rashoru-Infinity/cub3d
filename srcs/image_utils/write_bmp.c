@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_bmp.c                                        :+:      :+:    :+:   */
+/*   write_bmp.c                                              |@@@@@  @@@@@|        */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 05:53:17 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/04 11:03:27 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/04 11:25:07 by Rashoru-Infinity             ~@  @~            */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ static t_status	write_inf_header(int fd, t_arg *ag)
 {
 	const int	inf_header_size = 40;
 	const int	plane = 1;
-	const int	null_byte_cnt = 28;
+	int			null_byte_cnt;
 
+	null_byte_cnt = 28;
 	if (write(fd, &inf_header_size, sizeof(int)) < 0)
 		return (fail);
 	if (write(fd, &ag->mlx.win.size.x, sizeof(int)) < 0)
