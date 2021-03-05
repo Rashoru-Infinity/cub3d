@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_op.c                                           :+:      :+:    :+:   */
+/*   key_op.c                                                 |@@@@@  @@@@@|        */
 /*                                                    +:+ +:+         +:+     */
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 22:32:51 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/06 03:26:09 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/06 03:29:45 by Rashoru-Infinity             ~@  @~            */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ int			key_release_act(int key, t_arg *ag)
 	else if (key == KEY_LEFT)
 		ag->mlx.player.ang_v += -M_PI / 100;
 	else if (key == KEY_RIGHT)
-		ag->mlx.player.anv_v += M_PI / 100;
+		ag->mlx.player.ang_v += M_PI / 100;
 	return (0);
 }
