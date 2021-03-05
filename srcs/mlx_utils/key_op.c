@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 22:32:51 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/05 06:17:02 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/06 03:26:09 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,35 +37,35 @@ int			cub3d_end(t_arg *ag)
 int			key_press_act(int key, t_arg *ag)
 {
 	if (key == KEY_A)
-		ag->mlx.player.side_v = -0.1;
+		ag->mlx.player.side_v += -0.1;
 	else if (key == KEY_D)
-		ag->mlx.player.side_v = 0.1;
+		ag->mlx.player.side_v += 0.1;
 	else if (key == KEY_S)
-		ag->mlx.player.heading_v = -0.1;
+		ag->mlx.player.heading_v += -0.1;
 	else if (key == KEY_W)
-		ag->mlx.player.heading_v = 0.1;
+		ag->mlx.player.heading_v += 0.1;
 	else if (key == KEY_ESC)
 		ag->mlx.player.end = 1;
 	else if (key == KEY_LEFT)
-		ag->mlx.player.ang_v = M_PI / 100;
+		ag->mlx.player.ang_v += M_PI / 100;
 	else if (key == KEY_RIGHT)
-		ag->mlx.player.ang_v = -M_PI / 100;
+		ag->mlx.player.ang_v += -M_PI / 100;
 	return (0);
 }
 
 int			key_release_act(int key, t_arg *ag)
 {
 	if (key == KEY_A)
-		ft_bzero(&ag->mlx.player.side_v, sizeof(double));
+		ag->mlx.player.side_v += 0.1;
 	else if (key == KEY_D)
-		ft_bzero(&ag->mlx.player.side_v, sizeof(double));
+		ag->mlx.player.side_v += -0.1;
 	else if (key == KEY_S)
-		ft_bzero(&ag->mlx.player.heading_v, sizeof(double));
+		ag->mlx.player.heading_v += 0.1;
 	else if (key == KEY_W)
-		ft_bzero(&ag->mlx.player.heading_v, sizeof(double));
+		ag->mlx.player.heading_v += -0.1;
 	else if (key == KEY_LEFT)
-		ft_bzero(&ag->mlx.player.ang_v, sizeof(double));
+		ag->mlx.player.ang_v += -M_PI / 100;
 	else if (key == KEY_RIGHT)
-		ft_bzero(&ag->mlx.player.ang_v, sizeof(double));
+		ag->mlx.player.anv_v += M_PI / 100;
 	return (0);
 }
