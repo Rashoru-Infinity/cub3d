@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 12:42:43 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/05 12:00:25 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/06 02:07:14 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	set_tx_end(t_config *conf, t_array cub, t_error e)
 	cub3d_error2(conf, e);
 }
 
-void	set_texture(char *line, char **path, t_config *conf, t_array cub)
+void		set_texture(char *line, char **path, t_config *conf, t_array cub)
 {
 	char	**words;
 	size_t	word_count;

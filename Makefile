@@ -3,17 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: root </var/mail/root>                      +#+  +:+       +#+         #
+#    By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/03/05 13:49:00 by root              #+#    #+#              #
-#    Updated: 2021/03/05 13:49:02 by root             ###   ########.fr        #
+#    Created: 2021/02/17 22:57:19 by khagiwar          #+#    #+#              #
+#    Updated: 2021/03/05 07:40:16 by khagiwar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
 CC	= gcc
-CFLAGS	= -Wall -Werror -Wextra
-#CFLAGS	= -Wall -Werror -Wextra -g
+#CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -g
 RM	= rm -f
 RUTILS	= srcs/read_utils
 MLUTILS	= srcs/mlx_utils

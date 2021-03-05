@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 21:00:40 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/05 06:11:27 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/06 02:05:10 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void		cub3d_error(t_arg *ag, t_error err_code)
 		write(2, "Invalid image.\n", ft_strlen("Invalid image.\n"));
 	else if (err_code == write_file)
 		write(2, "Fail to write file.\n", ft_strlen("Fail to write file.\n"));
+	else if (err_code == load_img)
+		write(2, "Fail to load images.\n", ft_strlen("Fail to load images.\n"));
 	clear_reachable(ag);
 	exit(1);
 }
@@ -86,6 +88,8 @@ void		cub3d_error2(t_config *conf, t_error err_code)
 		write(2, "Invalid image.\n", ft_strlen("Invalid image.\n"));
 	else if (err_code == write_file)
 		write(2, "Fail to write file.\n", ft_strlen("Fail to write file.\n"));
+	else if (err_code == load_img)
+		write(2, "Fail to load images.\n", ft_strlen("Fail to load images.\n"));
 	clear_conf2(conf);
 	exit(1);
 }

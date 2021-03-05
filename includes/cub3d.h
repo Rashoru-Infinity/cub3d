@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 17:25:41 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/05 08:49:49 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/06 01:51:30 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef enum		e_error {
 	mlx_err,
 	img_err,
 	write_file,
+	load_img,
 	no_err
 }					t_error;
 

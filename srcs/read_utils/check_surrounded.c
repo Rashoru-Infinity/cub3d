@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 14:36:11 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/05 10:56:25 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/06 02:06:51 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,9 @@ void			check_surrounded(t_config *conf)
 	t_error		err;
 
 	copy = NULL;
-	err = (vst_stat = map_zeros_like(conf->map)) ? no_err : malloc_err;
+	err = no_err;
+	if (!(vst_stat = map_zeros_like(conf->map)))
+		err = malloc_err;
 	if (err == no_err && array_init(&stack, 10) == fail)
 		err = malloc_err;
 	if (err == no_err && !(copy = gen_point(conf->player_location->x,
