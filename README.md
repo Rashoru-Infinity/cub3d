@@ -76,3 +76,12 @@ C 225,30,0
 11110111 1110101 101111010001
 11111111 1111111 111111111111
 ```
+# Key Operation
+If you do not use the --save option, players can explore the map.  
+<kbd>W</kbd> : Go straight  
+<kbd>A</kbd> : Slide to the right  
+<kbd>D</kbd> : Slide to the left  
+<kbd>S</kbd> : Go back  
+<kbd>&#8592;</kbd> : Turn left  
+<kbd>&#8594;</kbd> : Turn right  
+<kbd>ESC</kbd> : Quit game
