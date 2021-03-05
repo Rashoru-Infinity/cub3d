@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 14:36:11 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/02 03:15:48 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/05 10:56:25 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,23 @@ static t_status	is_overruning(t_config conf, int x, int y)
 	return (success);
 }
 
-static void		add_stack(t_array *stack, int x, int y, int *stat)
+static t_error	add_stack(t_array *stack, int x, int y, int *stat)
 {
 	t_point *p;
 
 	if (*stat)
-		return ;
+		return (no_err);
 	if (!(p = malloc(sizeof(t_point))))
-		cub3d_error(malloc_err);
+		return (malloc_err);
 	p->x = x;
 	p->y = y;
 	if (array_add(stack, (void *)p) == fail)
-		cub3d_error(malloc_err);
+	{
+		free(p);
+		return (malloc_err);
+	}
 	*stat = 1;
+	return (no_err);
 }
 
 static int		*get_vst(t_array *vst_stat, int x, int y)
@@ -51,49 +55,58 @@ static int		*get_vst(t_array *vst_stat, int x, int y)
 	return (&(line[x]));
 }
 
-static void		dfs(t_config conf, t_array *stack, t_array *vst_stat)
+static t_error	dfs(t_config *conf, t_array *stack, t_array *vst_stat)
 {
-	t_point		*curr;
+	t_point		curr;
+	t_error		status;
 
-	while (stack->size > 0)
+	status = no_err;
+	while (stack->size > 0 && status == no_err)
 	{
-		curr = stack->contents[--stack->size];
+		ft_memcpy(&curr, stack->contents[--stack->size], sizeof(t_point));
+		free(stack->contents[stack->size]);
 		stack->contents[stack->size] = NULL;
-		if (is_overruning(conf, curr->x, curr->y) == fail)
-			cub3d_error(map_err);
-		if (is_stk_appendable(conf, curr->x, curr->y - 1))
-			add_stack(stack, curr->x, curr->y - 1,
-			get_vst(vst_stat, curr->x, curr->y - 1));
-		if (is_stk_appendable(conf, curr->x - 1, curr->y))
-			add_stack(stack, curr->x - 1, curr->y,
-			get_vst(vst_stat, curr->x - 1, curr->y));
-		if (is_stk_appendable(conf, curr->x + 1, curr->y))
-			add_stack(stack, curr->x + 1, curr->y,
-			get_vst(vst_stat, curr->x + 1, curr->y));
-		if (is_stk_appendable(conf, curr->x, curr->y + 1))
-			add_stack(stack, curr->x, curr->y + 1,
-			get_vst(vst_stat, curr->x, curr->y + 1));
-		free(curr);
+		if (is_overruning(*conf, curr.x, curr.y) == fail)
+			return (map_err);
+		if (is_stk_appendable(*conf, curr.x, curr.y - 1))
+			status = add_stack(stack, curr.x, curr.y - 1,
+			get_vst(vst_stat, curr.x, curr.y - 1));
+		if (status == no_err && is_stk_appendable(*conf, curr.x - 1, curr.y))
+			status = add_stack(stack, curr.x - 1, curr.y,
+			get_vst(vst_stat, curr.x - 1, curr.y));
+		if (status == no_err && is_stk_appendable(*conf, curr.x + 1, curr.y))
+			status = add_stack(stack, curr.x + 1, curr.y,
+			get_vst(vst_stat, curr.x + 1, curr.y));
+		if (status == no_err && is_stk_appendable(*conf, curr.x, curr.y + 1))
+			status = add_stack(stack, curr.x, curr.y + 1,
+			get_vst(vst_stat, curr.x, curr.y + 1));
 	}
+	return (status);
 }
 
-void			check_surrounded(t_config conf)
+void			check_surrounded(t_config *conf)
 {
 	t_array		stack;
 	t_array		*vst_stat;
 	t_point		*copy;
+	t_error		err;
 
 	copy = NULL;
-	if (!(vst_stat = map_zeros_like(conf.map)))
-		cub3d_error(malloc_err);
-	if (array_init(&stack, 10) == fail)
-		cub3d_error(malloc_err);
-	if (!(copy = gen_point(conf.player_location->x, conf.player_location->y)))
-		cub3d_error(malloc_err);
-	if (array_add(&stack, (void *)copy) == fail)
-		cub3d_error(malloc_err);
-	dfs(conf, &stack, vst_stat);
+	err = (vst_stat = map_zeros_like(conf->map)) ? no_err : malloc_err;
+	if (err == no_err && array_init(&stack, 10) == fail)
+		err = malloc_err;
+	if (err == no_err && !(copy = gen_point(conf->player_location->x,
+	conf->player_location->y)))
+		err = malloc_err;
+	if (err == no_err && array_add(&stack, (void *)copy) == fail)
+		err = malloc_err;
+	if (err != no_err)
+		free(copy);
+	if (err == no_err)
+		err = dfs(conf, &stack, vst_stat);
 	array_clear(&stack);
 	array_clear(vst_stat);
 	free(vst_stat);
+	if (err != no_err)
+		cub3d_error2(conf, err);
 }

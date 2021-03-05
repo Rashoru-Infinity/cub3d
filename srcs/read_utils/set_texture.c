@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 12:42:43 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/02/28 22:27:25 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/05 12:00:25 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,37 @@
 #include <stdlib.h>
 #include <cub3d.h>
 
-void	set_texture(char *line, char **path)
+static void	set_tx_end(t_config *conf, t_array cub, t_error e)
+{
+	if (e == no_err)
+		return ;
+	array_clear(&cub);
+	cub3d_error2(conf, e);
+}
+
+void	set_texture(char *line, char **path, t_config *conf, t_array cub)
 {
 	char	**words;
 	size_t	word_count;
+	t_error	e;
 
+	e = no_err;
 	if (*path)
-		cub3d_error(read_file);
+		cub3d_error2(conf, read_file);
 	if (!(words = ft_split(line, ' ')))
-		cub3d_error(malloc_err);
+		cub3d_error2(conf, malloc_err);
 	word_count = 0;
 	while (words[word_count])
 	{
+		if (word_count != 1)
+			free(words[word_count]);
 		if (word_count >= 2)
-			cub3d_error(file_format);
+			e = file_format;
 		if (word_count == 1)
 			*path = words[word_count];
 		++word_count;
 	}
-	free(words[0]);
 	free(words);
-	if (word_count == 0)
-		cub3d_error(file_format);
+	e = word_count == 0 ? file_format : e;
+	set_tx_end(conf, cub, e);
 }

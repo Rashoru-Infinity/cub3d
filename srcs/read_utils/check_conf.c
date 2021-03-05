@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 14:46:37 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/02 01:06:04 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/05 08:42:46 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,16 @@ static t_status	has_correct_resolution(t_config *conf)
 	return (success);
 }
 
-static t_status	has_positive_color(t_color c)
+void			check_conf(t_array cub, t_config *conf)
 {
-	if (c.r < 0 || c.g < 0 || c.b < 0)
-		return (fail);
-	return (success);
-}
-
-void			check_conf(t_config *conf)
-{
-	if (has_positive_color(conf->textures.floor) == fail)
-		cub3d_error(file_format);
-	if (has_positive_color(conf->textures.ceil) == fail)
-		cub3d_error(file_format);
 	if (has_texture_paths(conf) == fail)
-		cub3d_error(file_format);
+	{
+		array_clear(&cub);
+		cub3d_error2(conf, file_format);
+	}
 	if (has_correct_resolution(conf) == fail)
-		cub3d_error(file_format);
+	{
+		array_clear(&cub);
+		cub3d_error2(conf, file_format);
+	}
 }

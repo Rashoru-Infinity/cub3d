@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/14 17:25:41 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/04 10:09:47 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/05 08:49:49 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ typedef struct		s_textures {
 	char			*we;
 	char			*ea;
 	char			*sp;
-	t_color			floor;
-	t_color			ceil;
+	int				floor;
+	int				ceil;
 }					t_textures;
 
 typedef struct		s_config {
@@ -116,7 +116,8 @@ typedef enum		e_error {
 	malloc_err,
 	mlx_err,
 	img_err,
-	write_file
+	write_file,
+	no_err
 }					t_error;
 
 typedef struct		s_arg {
@@ -125,13 +126,15 @@ typedef struct		s_arg {
 	t_config	conf;
 }					t_arg;
 
-void				cub3d_error(t_error err_code);
+void				cub3d_error(t_arg *ag, t_error err_code);
+void				cub3d_error2(t_config *conf, t_error err_code);
 void				read_conf(char *file, t_config *conf);
-void				set_texture(char *line, char **path);
+void				set_texture(char *line, char **path,
+					t_config *conf, t_array cub);
 void				init_conf(t_config *conf);
-t_status			atoi_check(char *str);
+t_status			atoi_check(char *str, int *n);
 t_status			atoi_check2(char *str, int *n);
-void				check_conf(t_config *conf);
+void				check_conf(t_array file, t_config *conf);
 char				*skip_space(char *s);
 char				*replace_white_space(char *s);
 size_t				count_delimiter(char *s, char del);
@@ -142,7 +145,7 @@ int					is_throughable(t_config conf, int x, int y);
 int					is_wall(t_config conf, int x, int y);
 int					is_sprite(t_config conf, int x, int y);
 void				check_map(t_config *conf);
-void				check_surrounded(t_config conf);
+void				check_surrounded(t_config *conf);
 int					is_stk_appendable(t_config conf, int x, int y);
 void				put_pixel(t_image *data, int x, int y, int color);
 void				set_mlx(t_arg *ag);
@@ -179,5 +182,7 @@ int					cub3d_end(t_arg *ag);
 void				conf_clear(t_arg *ag);
 t_status			write_bmp(t_arg *ag);
 void				clear_conf(t_arg *ag);
+void				clear_conf2(t_config *conf);
+void				split_clear(char **strs);
 
 #endif

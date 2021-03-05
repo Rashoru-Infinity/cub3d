@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_destroy_display.c                              :+:      :+:    :+:   */
+/*   split_clear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/03 18:56:35 by mg                #+#    #+#             */
-/*   Updated: 2020/10/04 01:55:35 by mg               ###   ########.fr       */
+/*   Created: 2021/03/05 07:38:09 by khagiwar          #+#    #+#             */
+/*   Updated: 2021/03/05 07:41:20 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_int.h"
+#include <stdlib.h>
 
-int	mlx_destroy_display(t_xvar *xvar)
+void	split_clear(char **strs)
 {
-	XCloseDisplay(xvar->display);
+	size_t wd_cnt;
+
+	wd_cnt = 0;
+	if (!strs)
+		return ;
+	while (strs[wd_cnt])
+	{
+		free(strs[wd_cnt]);
+		strs[wd_cnt++] = NULL;
+	}
+	free(strs);
 }

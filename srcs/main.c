@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/18 00:15:29 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/04 10:18:18 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/05 06:10:25 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,29 +52,29 @@ static char		*skip_dir(char *s)
 	return (s + last_index);
 }
 
-static void		arg_check(int argc, char **argv, int *save)
+static void		arg_check(int argc, char **argv, int *save, t_arg *ag)
 {
 	char	**words;
 	size_t	index;
 
 	if (argc == 1 || argc > 3 || *(skip_dir(argv[1])) == '.')
-		cub3d_error(arg_err);
+		cub3d_error(ag, arg_err);
 	if (!(words = ft_split(skip_dir(argv[1]), '.')))
-		cub3d_error(malloc_err);
+		cub3d_error(ag, malloc_err);
 	index = 0;
 	while (words[index])
 	{
 		if (!words[index + 1] && ft_strncmp("cub", words[index], 4))
-			cub3d_error(arg_err);
+			cub3d_error(ag, arg_err);
 		free(words[index++]);
 	}
 	if (index < 2)
-		cub3d_error(arg_err);
+		cub3d_error(ag, arg_err);
 	free(words);
 	if (argc == 3)
 	{
 		if (ft_strncmp("--save", argv[2], 7))
-			cub3d_error(arg_err);
+			cub3d_error(ag, arg_err);
 		*save = 1;
 	}
 }
@@ -83,14 +83,13 @@ int				main(int argc, char **argv)
 {
 	t_arg		ag;
 
-	ag.save = 0;
-	arg_check(argc, argv, &ag.save);
+	ft_bzero(&ag, sizeof(t_arg));
+	arg_check(argc, argv, &ag.save, &ag);
 	read_conf(argv[1], &ag.conf);
 	check_map(&ag.conf);
-	ft_bzero(&ag.mlx, sizeof(t_mlx));
 	init_player(&ag.mlx.player, ag.conf);
 	if (!(ag.mlx.mlx_ptr = mlx_init()))
-		cub3d_error(mlx_err);
+		cub3d_error(&ag, mlx_err);
 	set_mlx(&ag);
 	if (!ag.save)
 	{

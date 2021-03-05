@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 22:32:51 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/04 11:01:11 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/05 06:17:02 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 int			cub3d_end(t_arg *ag)
 {
 	if (ag->save && write_bmp(ag) == fail)
-		cub3d_error(write_file);
+		cub3d_error(ag, write_file);
 	if (!ag->save)
 		mlx_destroy_window(ag->mlx.mlx_ptr, ag->mlx.win_ptr);
 	mlx_destroy_image(ag->mlx.mlx_ptr, ag->mlx.win.img);

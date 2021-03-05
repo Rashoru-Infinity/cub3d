@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 01:22:14 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/04 10:19:54 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/05 05:45:00 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void		set_mlx(t_arg *ag)
 		ag->mlx.win.size.y = ag->conf.window_size.y;
 	if (!ag->save && !(ag->mlx.win_ptr = mlx_new_window(ag->mlx.mlx_ptr,
 	ag->mlx.win.size.x, ag->mlx.win.size.y, "Unlimited Blade Works")))
-		cub3d_error(mlx_err);
+		cub3d_error(ag, mlx_err);
+	if (load_images(ag->conf, &ag->mlx) == fail)
+		cub3d_error(ag, mlx_err);
 	if (!(ag->mlx.win.img =
 	mlx_new_image(ag->mlx.mlx_ptr, ag->mlx.win.size.x, ag->mlx.win.size.y)))
-		cub3d_error(mlx_err);
+		cub3d_error(ag, mlx_err);
 	ag->mlx.win.addr = mlx_get_data_addr(ag->mlx.win.img, &ag->mlx.win.bpp,
 					&ag->mlx.win.line_len, &ag->mlx.win.endian);
-	if (load_images(ag->conf, &ag->mlx) == fail)
-		cub3d_error(mlx_err);
 }
 
 void		move_player(t_arg *ag)

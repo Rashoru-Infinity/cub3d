@@ -1,18 +1,18 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile                                                 |@@@@@  @@@@@|         #
 #                                                     +:+ +:+         +:+      #
 #    By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/17 22:57:19 by khagiwar          #+#    #+#              #
-#    Updated: 2021/03/04 06:26:47 by khagiwar         ###   ########.fr        #
+#    Updated: 2021/03/05 13:46:29 by Rashoru-Infinity             ~@  @~             #
 #                                                                              #
 # **************************************************************************** #
 
 CC	= gcc
-#CFLAGS	= -Wall -Werror -Wextra -g -fsanitize=address
-CFLAGS	= -Wall -Werror -Wextra -g
+CFLAGS	= -Wall -Werror -Wextra
+#CFLAGS	= -Wall -Werror -Wextra -g
 RM	= rm -f
 RUTILS	= srcs/read_utils
 MLUTILS	= srcs/mlx_utils
@@ -26,6 +26,7 @@ SRCS	= 	srcs/main.c \
 			srcs/gen_sp_inf.c \
 			srcs/render.c \
 			srcs/clear_conf.c \
+			srcs/split_clear.c \
 			$(RUTILS)/set_texture.c \
 			$(RUTILS)/read_conf.c \
 			$(RUTILS)/atoi_check.c \
@@ -55,8 +56,8 @@ SRCS	= 	srcs/main.c \
 			$(MAUTILS)/get_min_rad.c \
 			$(MAUTILS)/rad_to_side_rate.c \
 			$(IMGUTILS)/write_bmp.c
-INC	= -Iincludes -Iutils/includes -Ilibft -Iutils/get_next_line/includes -Iutils/vla/includes -Imlx
-LINK	= -Lutils/get_next_line -lgnl -Lutils/vla -lvla -Llibft -lft -Lmlx -lmlx_Linux -Lmlx -lXext -lX11 -lm
+INC	= -Iincludes -Iutils/includes -Ilibft -Iutils/get_next_line/includes -Iutils/vla/includes
+LINK	= -Lutils/get_next_line -lgnl -Lutils/vla -lvla -Llibft -lft -lmlx_Linux -lXext -lX11 -lm
 OBJS	= $(SRCS:.c=.o)
 NAME	= cub3D
 
@@ -66,21 +67,18 @@ all	:	$(NAME)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 $(NAME)	:	$(OBJS)
-	$(MAKE) -C mlx all
 	$(MAKE) -C libft all
 	$(MAKE) -C utils/get_next_line all
 	$(MAKE) -C utils/vla all
 	$(CC) $(CFLAGS) $(OBJS) $(LINK) -o $(NAME) 
 
 clean	:
-	$(MAKE) -C mlx clean
 	$(MAKE) -C libft clean
 	$(MAKE) -C utils/get_next_line clean
 	$(MAKE) -C utils/vla clean
 	$(RM) $(OBJS)
 
 fclean	:	clean
-	$(MAKE) -C mlx fclean
 	$(MAKE) -C libft fclean
 	$(MAKE) -C utils/get_next_line fclean
 	$(MAKE) -C utils/vla fclean

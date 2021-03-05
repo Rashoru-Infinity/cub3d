@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/21 02:36:41 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/03 17:47:13 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/05 05:12:44 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ int				is_stk_appendable(t_config conf, int x, int y)
 void			check_map(t_config *conf)
 {
 	if (conf->map.size > 1000 || find_player(conf) == fail)
-		cub3d_error(file_format);
-	check_surrounded(*conf);
+		cub3d_error2(conf, map_err);
+	check_surrounded(conf);
 }

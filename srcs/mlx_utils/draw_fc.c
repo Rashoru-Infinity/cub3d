@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 20:24:44 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/04 11:00:41 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/05 08:39:39 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,14 @@ void	draw_fc(t_arg *ag)
 	while (p.y < ag->mlx.win.size.y / 2)
 	{
 		while (p.x < ag->mlx.win.size.x)
-			set_px_color(&ag->mlx.win, p.x++, p.y,
-			gen_trgb2(0, ag->conf.textures.ceil));
+			set_px_color(&ag->mlx.win, p.x++, p.y, ag->conf.textures.ceil);
 		p.x = 0;
 		++p.y;
 	}
 	while (p.y < ag->mlx.win.size.y)
 	{
 		while (p.x < ag->mlx.win.size.x)
-			set_px_color(&ag->mlx.win, p.x++, p.y,
-			gen_trgb2(0, ag->conf.textures.floor));
+			set_px_color(&ag->mlx.win, p.x++, p.y, ag->conf.textures.floor);
 		p.x = 0;
 		++p.y;
 	}
