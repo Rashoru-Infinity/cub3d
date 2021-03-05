@@ -1,7 +1,7 @@
 # cub3d
 Cub3D represents a realistic 3D graphic of the inside of a maze from a first person perspective.  
 # demo
-![Videotogif](https://user-images.githubusercontent.com/49583698/109904245-452c9400-7ce0-11eb-9a07-8194cd0777ec.gif)
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/49583698/110178483-db2ffe00-7e49-11eb-9bdc-2cb87f97b78b.gif)
 # Usage
 ```
 #run
