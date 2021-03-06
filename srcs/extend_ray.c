@@ -6,7 +6,7 @@
 /*   By: khagiwar <khagiwar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 05:09:30 by khagiwar          #+#    #+#             */
-/*   Updated: 2021/03/01 18:25:16 by khagiwar         ###   ########.fr       */
+/*   Updated: 2021/03/06 23:14:11 by khagiwar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void		extend_ray(double curr_rad, t_point2 *ray, t_point2 *prev_ray)
 		ray->x += floor(ray->x) - 1 - ray->x;
 	else if (fabs(get_min_rad(curr_rad - M_PI / 2)) < DBL_EPSILON)
 		ray->y += floor(ray->y) + 1 - ray->y;
-	else if (fabs(get_min_rad(curr_rad - 3 * M_PI / 2)) < DBL_EPSILON)
+	else if (fabs(get_min_rad(curr_rad + M_PI / 2)) < DBL_EPSILON)
 		ray->y += floor(ray->y) - 1 - ray->y;
 	else
 		move_point(curr_rad, ray);
