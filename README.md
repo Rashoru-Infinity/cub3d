@@ -82,6 +82,6 @@ If you do not use the --save option, players can explore the map.
 <kbd>A</kbd> : Slide to the left  
 <kbd>D</kbd> : Slide to the right  
 <kbd>S</kbd> : Go back  
-<kbd>&#8592;</kbd> : Turn left 
+<kbd>&#8592;</kbd> : Turn left  
 <kbd>&#8594;</kbd> : Turn right  
 <kbd>ESC</kbd> : Quit game
