@@ -1,7 +1,7 @@
-# cub3d
+# Cub3d
 Cub3D represents a realistic 3D graphic of the inside of a maze from a first person perspective.  
-# demo
-![Videotogif](https://user-images.githubusercontent.com/49583698/109904245-452c9400-7ce0-11eb-9a07-8194cd0777ec.gif)
+# Demo
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/49583698/110178483-db2ffe00-7e49-11eb-9bdc-2cb87f97b78b.gif)
 # Usage
 ```
 #run
@@ -79,8 +79,8 @@ C 225,30,0
 # Key Operation
 If you do not use the --save option, players can explore the map.  
 <kbd>W</kbd> : Go straight  
-<kbd>A</kbd> : Slide to the right  
-<kbd>D</kbd> : Slide to the left  
+<kbd>A</kbd> : Slide to the left  
+<kbd>D</kbd> : Slide to the right  
 <kbd>S</kbd> : Go back  
 <kbd>&#8592;</kbd> : Turn left  
 <kbd>&#8594;</kbd> : Turn right  
