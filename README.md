@@ -1,5 +1,9 @@
 # Cub3d
 Cub3D represents a realistic 3D graphic of the inside of a maze from a first person perspective.  
+# Requirements
+- gcc
+- make
+- [Minilibx](https://github.com/42Paris/minilibx-linux)
 # Demo
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/49583698/110178483-db2ffe00-7e49-11eb-9bdc-2cb87f97b78b.gif)
 # Usage
