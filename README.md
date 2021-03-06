@@ -79,8 +79,8 @@ C 225,30,0
 # Key Operation
 If you do not use the --save option, players can explore the map.  
 <kbd>W</kbd> : Go straight  
-<kbd>A</kbd> : Slide to the right  
-<kbd>D</kbd> : Slide to the left  
+<kbd>A</kbd> : Slide to the left  
+<kbd>D</kbd> : Slide to the right  
 <kbd>S</kbd> : Go back  
 <kbd>&#8592;</kbd> : Turn right  
 <kbd>&#8594;</kbd> : Turn left  
