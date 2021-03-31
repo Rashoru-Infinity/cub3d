@@ -11,8 +11,7 @@
 # **************************************************************************** #
 
 CC	= gcc
-#CFLAGS	= -Wall -Werror -Wextra
-CFLAGS	= -Wall -Werror -Wextra -g
+CFLAGS	= -Wall -Werror -Wextra
 RM	= rm -f
 RUTILS	= srcs/read_utils
 MLUTILS	= srcs/mlx_utils

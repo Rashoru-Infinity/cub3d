@@ -11,8 +11,7 @@
 # **************************************************************************** #
 
 CC	= gcc
-#CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
-CFLAGS	= -Wall -Wextra -Werror -g
+CFLAGS	= -Wall -Wextra -Werror
 AR	= ar -crs
 RM	= rm -f
 SRCS	= srcs/vla.c
