@@ -95,7 +95,7 @@ int				main(int argc, char **argv)
 	{
 		mlx_hook(ag.mlx.win_ptr, 2, 1L << 0, key_press_act, &ag);
 		mlx_hook(ag.mlx.win_ptr, 3, 1L << 1, key_release_act, &ag);
-		mlx_hook(ag.mlx.win_ptr, 33, 1L << 17, cub3d_end, &ag);
+		mlx_hook(ag.mlx.win_ptr, 33, 1L << 17, end_button_act, &ag);
 		mlx_loop_hook(ag.mlx.mlx_ptr, render, &ag);
 		mlx_do_sync(ag.mlx.mlx_ptr);
 		mlx_loop(ag.mlx.mlx_ptr);

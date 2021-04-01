@@ -185,5 +185,6 @@ t_status			write_bmp(t_arg *ag);
 void				clear_conf(t_arg *ag);
 void				clear_conf2(t_config *conf);
 void				split_clear(char **strs);
+int					end_button_act(t_arg *ag);
 
 #endif
