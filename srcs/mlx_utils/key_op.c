@@ -36,7 +36,7 @@ int			cub3d_end(t_arg *ag)
 
 int			end_button_act(t_arg *ag)
 {
-	ag->player.end = 1;
+	ag->mlx.player.end = 1;
 	return (0);
 }
 
