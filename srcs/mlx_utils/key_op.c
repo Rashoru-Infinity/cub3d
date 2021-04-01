@@ -31,6 +31,7 @@ int			cub3d_end(t_arg *ag)
 	mlx_destroy_image(ag->mlx.mlx_ptr, ag->mlx.sp_tx.img);
 	mlx_destroy_display(ag->mlx.mlx_ptr);
 	clear_conf(ag);
+	ag->mlx.player.end = 1;
 	return (0);
 }
 
