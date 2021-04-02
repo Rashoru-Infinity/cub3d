@@ -49,11 +49,14 @@ static		int diag_through(t_arg *ag, t_point2 new_pnt)
 	if (!(abs((int)ag->mlx.player.pos.x - (int)new_pnt.x) > 0)
 	|| !(abs((int)ag->mlx.player.pos.y - (int)new_pnt.y) > 0))
 		return (0);
-	px.x = new_pnt.x - ag->mlx.player.pos.x > 0 ? (int)ceil(ag->mlx.player.pos.x) : (int)floor(ag->mlx.player.pos.x - 1);
+	px.x = new_pnt.x - ag->mlx.player.pos.x > 0
+	? (int)ceil(ag->mlx.player.pos.x) : (int)floor(ag->mlx.player.pos.x - 1);
 	px.y = (int)floor(ag->mlx.player.pos.y);
 	py.x = (int)floor(ag->mlx.player.pos.x);
-	py.y = new_pnt.y - ag->mlx.player.pos.y > 0 ? (int)ceil(ag->mlx.player.pos.y) : (int)floor(ag->mlx.player.pos.y - 1);
-	if (!is_throughable(ag->conf, px.x, px.y) && !is_throughable(ag->conf, py.x, py.y))
+	py.y = new_pnt.y - ag->mlx.player.pos.y > 0
+	? (int)ceil(ag->mlx.player.pos.y) : (int)floor(ag->mlx.player.pos.y - 1);
+	if (!is_throughable(ag->conf, px.x, px.y)
+	&& !is_throughable(ag->conf, py.x, py.y))
 		return (1);
 	return (0);
 }
