@@ -15,7 +15,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <unistd.h>
-#include <stdio.h>
 
 void		set_mlx(t_arg *ag)
 {
@@ -54,7 +53,6 @@ static		int diag_through(t_arg *ag, t_point2 new_pnt)
 	px.y = (int)floor(ag->mlx.player.pos.y);
 	py.x = (int)floor(ag->mlx.player.pos.x);
 	py.y = new_pnt.y - ag->mlx.player.pos.y > 0 ? (int)ceil(ag->mlx.player.pos.y) : (int)floor(ag->mlx.player.pos.y - 1);
-	printf("c(%f, %f), px(%d, %d) py(%d, %d) new_pnt(%f, %f)\n", ag->mlx.player.pos.x, ag->mlx.player.pos.y, px.x, px.y, py.x, py.y, new_pnt.x, new_pnt.y);
 	if (!is_throughable(ag->conf, px.x, px.y) && !is_throughable(ag->conf, py.x, py.y))
 		return (1);
 	return (0);
