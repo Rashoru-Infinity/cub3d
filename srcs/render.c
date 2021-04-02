@@ -50,11 +50,11 @@ static		int diag_through(t_arg *ag, t_point2 new_pnt)
 	if (!(abs((int)ag->mlx.player.pos.x - (int)new_pnt.x) > 0)
 	|| !(abs((int)ag->mlx.player.pos.y - (int)new_pnt.y) > 0))
 		return (0);
-	px.x = new_pnt.x - ag->mlx.player.pos.x > 0 ? (int)ceil(new_pnt.x) : (int)floor(new_pnt.x);
-	px.y = (int)ceil(new_pnt.y);
-	py.x = (int)ceil(new_pnt.x);
-	py.y = new_pnt.y - ag->mlx.player.pos.y > 0 ? (int)ceil(new_pnt.y) : (int)floor(new_pnt.y);
-	printf("px(%d, %d) py(%d, %d) new_pnt(%f, %f)\n", px.x, px.y, py.x, py.y, new_pnt.x, new_pnt.y);
+	px.x = new_pnt.x - ag->mlx.player.pos.x > 0 ? (int)ceil(ag->mlx.player.pos.x) : (int)floor(ag->mlx.player.pos.x - 1);
+	px.y = (int)floor(ag->mlx.player.pos.y);
+	py.x = (int)floor(ag->mlx.player.pos.x);
+	py.y = new_pnt.y - ag->mlx.player.pos.y > 0 ? (int)ceil(ag->mlx.player.pos.y) : (int)floor(ag->mlx.player.pos.y - 1);
+	printf("c(%f, %f), px(%d, %d) py(%d, %d) new_pnt(%f, %f)\n", ag->mlx.player.pos.x, ag->mlx.player.pos.y, px.x, px.y, py.x, py.y, new_pnt.x, new_pnt.y);
 	if (!is_throughable(ag->conf, px.x, px.y) && !is_throughable(ag->conf, py.x, py.y))
 		return (1);
 	return (0);
