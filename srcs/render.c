@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <unistd.h>
+#include <stdio.h>
 
 void		set_mlx(t_arg *ag)
 {
@@ -41,6 +42,24 @@ void		set_mlx(t_arg *ag)
 		cub3d_error(ag, mlx_err);
 }
 
+static		int diag_through(t_arg *ag, t_point2 new_pnt)
+{
+	t_point	px;
+	t_point	py;
+
+	if (!(abs((int)ag->mlx.player.pos.x - (int)new_pnt.x) > 0)
+	|| !(abs((int)ag->mlx.player.pos.y - (int)new_pnt.y) > 0))
+		return (0);
+	px.x = new_pnt.x - ag->mlx.player.pos.x > 0 ? (int)ceil(new_pnt.x) : (int)floor(new_pnt.x);
+	px.y = (int)ceil(new_pnt.y);
+	py.x = (int)ceil(new_pnt.x);
+	py.y = new_pnt.y - ag->mlx.player.pos.y > 0 ? (int)ceil(new_pnt.y) : (int)floor(new_pnt.y);
+	printf("px(%d, %d) py(%d, %d) new_pnt(%f, %f)\n", px.x, px.y, py.x, py.y, new_pnt.x, new_pnt.y);
+	if (!is_throughable(ag->conf, px.x, px.y) && !is_throughable(ag->conf, py.x, py.y))
+		return (1);
+	return (0);
+}
+
 void		move_player(t_arg *ag)
 {
 	t_point2 new_pnt;
@@ -50,15 +69,15 @@ void		move_player(t_arg *ag)
 	new_pnt.x += ag->mlx.player.side_v * cos(ag->mlx.player.dir + M_PI / 2);
 	new_pnt.y += ag->mlx.player.heading_v * sin(ag->mlx.player.dir);
 	new_pnt.y += ag->mlx.player.side_v * sin(ag->mlx.player.dir + M_PI / 2);
-	if (new_pnt.x < 0 || new_pnt.y < 0)
+	ag->mlx.player.dir += ag->mlx.player.ang_v;
+	ag->mlx.player.dir = get_min_rad(ag->mlx.player.dir);
+	if (new_pnt.x < 0 || new_pnt.y < 0 || diag_through(ag, new_pnt))
 		return ;
 	if (is_throughable(ag->conf, (int)new_pnt.x, (int)new_pnt.y))
 	{
 		ag->mlx.player.pos.x = new_pnt.x;
 		ag->mlx.player.pos.y = new_pnt.y;
 	}
-	ag->mlx.player.dir += ag->mlx.player.ang_v;
-	ag->mlx.player.dir = get_min_rad(ag->mlx.player.dir);
 }
 
 int			render(void *arg)
