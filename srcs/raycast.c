@@ -77,8 +77,8 @@ static t_map_obj	check_object(t_point2 start, t_point2 end, t_arg *ag,
 	pl_cnt_dist = get_euclid_dist2(hit_inf->pos, hit_inf->pl_pos);
 	if (is_wall(ag->conf, hit_inf->pos.x, hit_inf->pos.y))
 	{
-		hit_inf->camera_dist
-		= get_camera_dist(end, hit_inf->pl_pos, hit_inf->heading_rad);
+		hit_inf->camera_dist =
+		get_camera_dist(end, hit_inf->pl_pos, hit_inf->heading_rad);
 		return (euclid_dist < DBL_EPSILON ? blank : wall);
 	}
 	else if (is_sprite(ag->conf, hit_inf->pos.x, hit_inf->pos.y)
