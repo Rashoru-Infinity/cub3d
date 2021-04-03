@@ -14,6 +14,7 @@
 #include <mlx.h>
 #include <math.h>
 #include <libft.h>
+#include <stdio.h>
 
 static int	get_rad_img_trgb(double rad, t_mlx data, int x, int y)
 {

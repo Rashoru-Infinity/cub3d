@@ -1,0 +1,15 @@
+R 600 400
+NO ./textures/c_north.xpm
+SO ./textures/c_south.xpm
+EA ./textures/c_east.xpm
+WE ./textures/c_west.xpm
+F 100,150,150
+S ./textures/sword.xpm
+C 200,21,1
+
+111111111111111
+100000000000001
+100000000000001
+100000000000001
+1000000N0000001
+111111111111111

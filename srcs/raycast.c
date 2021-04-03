@@ -51,6 +51,17 @@ static double		get_sub_angle(t_point2 vtx1, t_point2 jntvtx, t_point2 vtx2)
 	return (rad1 - rad2);
 }
 
+static void			inc_rad(double *curr_rad, double heading, int x)
+{
+	double	step;
+	double	fov;
+
+	fov = (double)66 / (double)180 * M_PI;
+	step = sin(fov / 2) * 2 / x;
+	*curr_rad = heading +\
+	atan2(cos(fov / 2) * tan(*curr_rad - heading) + step, cos(fov / 2));
+}
+
 static t_map_obj	check_object(t_point2 start, t_point2 end, t_arg *ag,
 					t_ray_obj *hit_inf)
 {
@@ -66,8 +77,8 @@ static t_map_obj	check_object(t_point2 start, t_point2 end, t_arg *ag,
 	pl_cnt_dist = get_euclid_dist2(hit_inf->pos, hit_inf->pl_pos);
 	if (is_wall(ag->conf, hit_inf->pos.x, hit_inf->pos.y))
 	{
-		hit_inf->camera_dist =
-		get_camera_dist(end, hit_inf->pl_pos, hit_inf->heading_rad);
+		hit_inf->camera_dist
+		= get_camera_dist(end, hit_inf->pl_pos, hit_inf->heading_rad);
 		return (euclid_dist < DBL_EPSILON ? blank : wall);
 	}
 	else if (is_sprite(ag->conf, hit_inf->pos.x, hit_inf->pos.y)
@@ -102,7 +113,7 @@ void				raycast(t_arg *ag)
 			extend_ray(curr_rad, &ray, &prev_ray);
 		draw_wall(hit_inf, &ag->mlx, sw);
 		draw_sprite(&hit_inf, &ag->mlx, sw);
-		curr_rad += (double)33 / (double)180 * M_PI * 2 / ag->mlx.win.size.x;
+		inc_rad(&curr_rad, ag->mlx.player.dir, ag->mlx.win.size.x);
 		++sw;
 		array_clear(&hit_inf.sp_stk);
 	}
