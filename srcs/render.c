@@ -41,7 +41,7 @@ void		set_mlx(t_arg *ag)
 		cub3d_error(ag, mlx_err);
 }
 
-static		int diag_through(t_arg *ag, t_point2 new_pnt)
+static int	diag_through(t_arg *ag, t_point2 new_pnt)
 {
 	t_point	px;
 	t_point	py;
