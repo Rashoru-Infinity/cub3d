@@ -12,7 +12,6 @@
 
 #include <cub3d.h>
 #include <mlx.h>
-#include <stdio.h>
 #include <math.h>
 #include <unistd.h>
 
@@ -29,6 +28,10 @@ void		set_mlx(t_arg *ag)
 		ag->mlx.win.size.y = p.y;
 	else
 		ag->mlx.win.size.y = ag->conf.window_size.y;
+	if (ag->mlx.win.size.x > 32700)
+		ag->mlx.win.size.x = 32700;
+	if (ag->mlx.win.size.y > 32700)
+		ag->mlx.win.size.y = 32700;
 	if (load_images(ag->conf, &ag->mlx) == fail)
 		cub3d_error(ag, load_img);
 	if (!(ag->mlx.win.img =
