@@ -17,7 +17,6 @@
 #include <vla.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <stdio.h>
 
 static t_error	set_color(int *color, char *line)
 {
