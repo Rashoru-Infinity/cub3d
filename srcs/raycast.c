@@ -14,7 +14,6 @@
 #include <cub3d.h>
 #include <math.h>
 #include <float.h>
-#include <stdio.h>
 
 static void			set_obj_pos(t_point2 start, t_point2 end, t_point2 *pos)
 {
